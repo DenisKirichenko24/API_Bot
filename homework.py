@@ -10,7 +10,7 @@ load_dotenv()
 
 PRAKTIKUM_TOKEN = os.getenv('PRAKTIKUM_TOKEN')
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
-CHAT_ID = os.getenv('SID')
+CHAT_ID = os.getenv('CHAT_ID')
 
 # проинициализируйте бота здесь,
 # чтобы он был доступен в каждом нижеобъявленном методе,

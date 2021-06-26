@@ -20,11 +20,11 @@ url = 'https://praktikum.yandex.ru/api/user_api/homework_statuses/'
 
 HOMEWORK_STATUSES = ['reviewing', 'approved', 'rejected']
 
+
 def parse_homework_status(homework):
     homework_name = homework.get('homework_name')
-    status = homework.get('status')
     if homework.get('status') == 'rejected':
-        verdict = f'К сожалению, в работе нашлись ошибки.'
+        verdict = 'К сожалению, в работе нашлись ошибки.'
         return f'У вас проверили работу "{homework_name}"!\n\n{verdict}'
     else:
         verdict = 'Ревьюеру всё понравилось, работа зачтена!'
@@ -54,7 +54,7 @@ def main():
         try:
             homeworks = get_homeworks(current_timestamp)
             if homeworks.get('homeworks'):
-                send_message(parse_homework_status(homeworks.get('homeworks')[0]))
+                send_message(parse_homework_status(homeworks.get('homeworks')))
             time.sleep(5 * 60)  # Опрашивать раз в пять минут
 
         except Exception as e:

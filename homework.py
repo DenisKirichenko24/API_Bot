@@ -51,11 +51,15 @@ def get_homeworks(current_timestamp):
             params={'from_date': current_timestamp})
         return homework_statuses.json()
     except ValueError as error:
-        logging.exception(f'Не верно переданное значение {error}')
-        return {}
+        message_ex1 = f'Не верно переданное значение {error}'
+        raise bot.send_message(chat_id=CHAT_ID, text=message_ex1)
+
     except requests.exceptions.RequestException as error:
-        logging.exception(f'В запросе ошибка {error}')
-        return {}
+        message_ex2 = f'В запросе ошибка {error}'
+        raise bot.send_message(chat_id=CHAT_ID, text=message_ex2)
+        # не совсем уверен в правильности потому что прочел что при raise не
+        # надо указывать какое именно исключение хочешь вызвать
+        # и не знаю правильно ли применил
 
 
 def send_message(message):

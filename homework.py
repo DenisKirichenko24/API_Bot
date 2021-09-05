@@ -56,11 +56,7 @@ def get_homeworks(current_timestamp):
 
     except requests.exceptions.RequestException as error:
         message_ex2 = f'В запросе ошибка {error}'
-        raise bot.send_message(chat_id=CHAT_ID, text=message_ex2)
-        # не совсем уверен в правильности потому что прочел что при raise не
-        # надо указывать какое именно исключение хочешь вызвать
-        # и не знаю правильно ли применил
-
+        raise error
 
 def send_message(message):
     logger.info('Отправка сообщения')

@@ -54,9 +54,6 @@ def get_homeworks(current_timestamp):
         message_ex1 = f'Не верно переданное значение {error}'
         raise bot.send_message(chat_id=CHAT_ID, text=message_ex1)
 
-    except requests.exceptions.RequestException as error:
-        message_ex2 = f'В запросе ошибка {error}'
-        raise error
 
 def send_message(message):
     logger.info('Отправка сообщения')

@@ -51,8 +51,7 @@ def get_homeworks(current_timestamp):
             params={'from_date': current_timestamp})
         return homework_statuses.json()
     except ValueError as error:
-        message_ex1 = f'Не верно переданное значение {error}'
-        raise bot.send_message(chat_id=CHAT_ID, text=message_ex1)
+        raise error
 
 
 def send_message(message):

@@ -26,20 +26,6 @@ url = 'https://praktikum.yandex.ru/api/user_api/homework_statuses/'
 
 HOMEWORK_STATUSES = ['reviewing', 'approved', 'rejected']
 
-
-def parse_homework_status(homework):
-    homework_name = homework.get('homework_name')
-    homework_status = homework.get('status')
-    if homework_name is None and homework_status is None:
-        return ('Пришли пустые данные!')
-    if homework_status == 'rejected':
-        verdict = 'К сожалению, в работе нашлись ошибки.'
-        return f'У вас проверили работу "{homework_name}"!\n\n{verdict}'
-    else:
-        verdict = 'Ревьюеру всё понравилось, работа зачтена!'
-    return f'У вас проверили работу "{homework_name}"!\n\n{verdict}'
-
-
 def get_homeworks(current_timestamp):
     logger.info('Получение домашних работ')
     if current_timestamp is None:
@@ -52,6 +38,19 @@ def get_homeworks(current_timestamp):
         return homework_statuses.json()
     except ValueError as error:
         raise error
+
+
+def parse_homework_status(homework):
+    homework_name = homework.get('homework_name')
+    homework_status = homework.get('status')
+    if homework_name is None and homework_status is None:
+        return ('Пришли пустые данные!')
+    if homework_status == 'rejected':
+        verdict = 'К сожалению, в работе нашлись ошибки.'
+        return f'У вас проверили работу "{homework_name}"!\n\n{verdict}'
+    else:
+        verdict = 'Ревьюеру всё понравилось, работа зачтена!'
+    return f'У вас проверили работу "{homework_name}"!\n\n{verdict}'
 
 
 def send_message(message):
